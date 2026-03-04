@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MEALS - Arabian Spot</title>
+<style>
+body { margin:0; font-family: 'Poppins', Arial, sans-serif; background:#f9f9f9; text-align:center; color:#333; padding-bottom:80px;}
+header { background:#111; color:white; padding:20px;}
+.container { padding:20px; max-width:800px; margin:auto;}
+.menu-card { display:flex; align-items:center; text-align:left; background:white; border-radius:15px; overflow:hidden; margin-bottom:30px; box-shadow:0 4px 15px rgba(0,0,0,0.1); transition:0.3s;}
+.item-img { width:45%; height:220px; object-fit:cover;}
+.item-details { width:55%; padding:20px;}
+.order-options-row { display:flex; justify-content:center; gap:15px; margin-top:15px;}
+.qty-btn { flex:1; padding:12px 5px; background:#fdf2f2; border:1.5px solid #e63946; color:#111; border-radius:8px; font-weight:bold; display:flex; flex-direction:column; align-items:center; transition:0.3s; font-size:14px; cursor:pointer;}
+.qty-btn:hover { background:#25d366; color:white; border-color:#25d366;}
+.price-label { font-size:16px; margin-top:4px;}
+.order-btn { margin-top:15px; padding:12px; width:100%; background:black; color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer; transition:0.3s;}
+.order-btn:hover { background:#e63946;}
+#cart-bar { display:none; position:fixed; bottom:15px; left:50%; transform:translateX(-50%); width:90%; max-width:450px; background:#25d366; color:white; padding:15px; border-radius:50px; justify-content:space-between; align-items:center; box-shadow:0 8px 20px rgba(0,0,0,0.3); z-index:999; cursor:pointer; font-weight:bold;}
+.cart-items-list { text-align:left; max-height:250px; overflow-y:auto; margin:15px 0; border-top:1px solid #eee; padding-top:10px;}
+.cart-item { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; background:#f1f1f1; padding:10px; border-radius:10px;}
+.remove-btn { background:#ff4d4d; color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer; font-weight:bold;}
+.order-type-tabs { display:flex; gap:10px; margin:15px 0;}
+.tab-btn { flex:1; padding:10px; border:1px solid #ccc; border-radius:8px; cursor:pointer; font-weight:bold; background:white;}
+.tab-btn.active { background:#111; color:white; border-color:#111;}
+#address-box { display:none; margin-bottom:15px;}
+.back-container { margin:40px 0;}
+.back-btn { background-color:#111; color:white; padding:12px 30px; text-decoration:none; border-radius:30px; font-weight:bold; display:inline-block;}
+@media(max-width:768px){
+  .menu-card{ flex-direction:column;}
+  .item-img{ width:100%; height:220px;}
+  .item-details{ width:100%; text-align:center;}
+  .item-details p{ font-size:14px; line-height:1.6; margin-top:8px; color:#555;}
+}
+</style>
+</head>
+<body>
+
+<header><h1>MEALS</h1></header>
+
+<div class="container">
+
+<div class="menu-card">
+  <img src="img 3.png" class="item-img">
+  <div class="item-details">
+    <h3 class="item-title">FISH MASHWI</h3>
+    <p class="item-desc">The Taste Of Arabian Sea.</p>
+    <div class="order-options-row">
+      <div class="qty-btn" onclick="selectItem(this,'FISH MASHWI','Mayonees',130,1)">QUATER ₹130</div>
+      <div class="qty-btn" onclick="selectItem(this,'FISH MASHWI','Mayonees',250,2)">HALF ₹250</div>
+      <div class="qty-btn" onclick="selectItem(this,'FISH MASHWI','Mayonees',500,4)">FULL ₹500</div>
+    </div>
+    <button class="order-btn" onclick="addSelectedToCart()">ORDER NOW</button>
+  </div>
+</div>
+
+<div class="menu-card">
+  <img src="img 16.PNG" class="item-img">
+  <div class="item-details">
+    <h3 class="item-title">ALFAHAM</h3>
+    <p class="item-desc">Traditional Spicy Chicken.</p>
+    <div class="order-options-row">
+      <div class="qty-btn" onclick="selectItem(this,'ALFAHAM','Mayonees',120,1)">QUATER ₹120</div>
+      <div class="qty-btn" onclick="selectItem(this,'ALFAHAM','Mayonees',240,2)">HALF ₹240</div>
+      <div class="qty-btn" onclick="selectItem(this,'ALFAHAM','Mayonees',480,4)">FULL ₹480</div>
+    </div>
+    <button class="order-btn" onclick="addSelectedToCart()">ORDER NOW</button>
+  </div>
+</div>
+
+
+<div id="toast" style="visibility:hidden; min-width:250px; background:#111; color:white; text-align:center; border-radius:12px; padding:14px; position:fixed; bottom:30px; left:50%; transform:translateX(-50%); z-index:9999;">Item Saved to Cart ✅</div>
+
+<div class="back-container"><a href="index.html" class="back-btn">⬅ BACK TO HOME</a></div>
+
+</div>
+
+<div id="cart-bar" onclick="openCart()">
+  <span id="cart-info">0 Items Selected</span>
+  <span>VIEW CART 🛒</span>
+</div>
+
+<div id="cart-popup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; justify-content:center; align-items:center;">
+  <div style="background:white; padding:25px; border-radius:20px; width:90%; max-width:380px; text-align:center;">
+    <h3 style="margin-top:0;">Your Selection</h3>
+    <div id="cart-items-list" class="cart-items-list"></div>
+    <div style="font-size:1.2rem; font-weight:bold; margin-bottom:10px;">Total: ₹<span id="cart-total">0</span></div>
+    <div class="order-type-tabs">
+      <button id="pickup-btn" class="tab-btn active" onclick="setMode('Shop Pickup')">Shop Pickup</button>
+      <button id="delivery-btn" class="tab-btn" onclick="setMode('Home Delivery')">Home Delivery</button>
+    </div>
+    <div id="address-box">
+      <textarea id="landmark-text" rows="2" placeholder="Enter Landmark / Address" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc; font-family:inherit; box-sizing:border-box;"></textarea>
+    </div>
+    <button onclick="sendToWhatsApp()" style="background:#25d366; color:white; width:100%; border:none; padding:15px; border-radius:12px; font-weight:bold; font-size:1.1rem; cursor:pointer;">Send to WhatsApp 🚀</button>
+    <button onclick="closeCart()" style="background:none; border:none; color:gray; margin-top:15px; cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<script>
+// GLOBAL CART
+let cart = JSON.parse(localStorage.getItem('arabianCart')) || [];
+let selectedItem = null;
+let orderMode = "Shop Pickup";
+window.onload = updateCartBar;
+
+function saveToStorage() { localStorage.setItem('arabianCart', JSON.stringify(cart)); }
+
+function selectItem(btn, name, details, price, pieces){
+    selectedItem = { name: name + " - " + details, price: price, pieces: pieces };
+    const card = btn.closest('.menu-card');
+    card.querySelector('.item-title').innerText = name;
+    card.querySelector('.item-desc').innerText = details + "\nPieces: " + pieces + "\nPrice: ₹" + price;
+}
+
+function addSelectedToCart(){
+    if(!selectedItem){ alert("Please select Quater/Half/Full first!"); return; }
+    cart.push(selectedItem);
+    saveToStorage();
+    updateCartBar();
+    showToast();
+}
+
+function showToast(){
+    const toast = document.getElementById("toast");
+    toast.style.visibility = "visible";
+    setTimeout(()=>{toast.style.visibility="hidden";},2000);
+}
+
+function updateCartBar(){
+    const bar = document.getElementById('cart-bar');
+    const info = document.getElementById('cart-info');
+    if(cart.length>0){ bar.style.display='flex'; info.innerText = cart.length + " Item(s) Selected"; }
+    else{ bar.style.display='none'; }
+}
+
+function openCart(){
+    const list = document.getElementById('cart-items-list');
+    const totalDisp = document.getElementById('cart-total');
+    list.innerHTML = ""; let total=0;
+    cart.forEach((item,index)=>{
+        list.innerHTML+=`<div class="cart-item"><div style="text-align:left"><span style="display:block;font-weight:bold">${item.name}</span><span>₹${item.price} (${item.pieces} pcs)</span></div><button class="remove-btn" onclick="removeItem(${index})">✕</button></div>`;
+        total+=item.price;
+    });
+    totalDisp.innerText = total;
+    document.getElementById('cart-popup').style.display='flex';
+}
+
+function removeItem(index){
+    cart.splice(index,1); saveToStorage(); updateCartBar();
+    if(cart.length===0) closeCart(); else openCart();
+}
+
+function setMode(mode){
+    orderMode=mode;
+    document.getElementById('pickup-btn').classList.toggle('active', mode==='Shop Pickup');
+    document.getElementById('delivery-btn').classList.toggle('active', mode==='Home Delivery');
+    document.getElementById('address-box').style.display = (mode==='Home Delivery')?'block':'none';
+}
+
+function closeCart(){ document.getElementById('cart-popup').style.display='none'; }
+
+function sendToWhatsApp(){
+    if(cart.length===0) return;
+
+    const phone = "917560929324";
+    let itemsText = "";
+    let total = 0;
+
+    cart.forEach(item => {
+        itemsText += `• ${item.name} - ₹${item.price}%0A`;
+        total += item.price;
+    });
+
+    let landmark = document.getElementById('landmark-text').value;
+
+    let text = `*New Order List*%0A--------------------%0A${itemsText}--------------------%0A*Total: ₹${total}*%0A*Mode:* ${orderMode}`;
+
+    if(orderMode === 'Home Delivery' && landmark) {
+        text += `%0A*Landmark:* ${landmark}`;
+    }
+
+    window.location.href = `https://wa.me/${phone}?text=${text}`;
+}
+</script>
+
+</body>
+</html>

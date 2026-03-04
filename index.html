@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arabian Spot | Authentic Arabian Flavors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body { margin: 0; font-family: 'Poppins', sans-serif; background-color: #f4f4f4; scroll-behavior: smooth; }
+
+        /* --- 1. HEADER --- */
+        header { 
+            background: #1a1c24; color: white; padding: 15px 50px; 
+            position: sticky; top: 0; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header-socials { display: flex; gap: 20px; font-size: 18px; }
+        .header-socials a { color: #ccc; text-decoration: none; }
+       
+        .nav-logo-img { height: 45px; width: auto; }
+        .cart-emblem { position: relative; cursor: pointer; color: white; font-size: 22px; }
+        .cart-badge { 
+            position: absolute; top: -8px; right: -12px; background: #e63946; 
+            color: white; font-size: 10px; width: 18px; height: 18px; 
+            border-radius: 50%; display: none; justify-content: center; align-items: center;
+        }
+
+      /* --- HERO SECTION FIXED --- */
+.hero {
+    position: relative;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    text-align: center;
+    color: white;
+}
+
+.main-hero-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Dark overlay */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 2;
+}
+
+.main-hero-logo,
+.hero h1,
+.hero p {
+    position: relative;
+    z-index: 3;
+}
+
+.main-hero-logo {
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin: 0;
+    letter-spacing: 3px;
+}
+
+@media (max-width:600px){
+    .hero{
+        height: 360px;
+    }
+
+    .hero h1{
+        font-size: 28px;
+    }
+}
+/* --- HERO NAVIGATION --- */
+.hero-nav {
+    position: absolute;
+    top: 30px;
+    display: flex;
+    gap: 40px;
+    z-index: 3;
+}
+
+.hero-nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    position: relative;
+}
+
+.hero-nav a:hover {
+    color: #e63946;
+}
+
+/* underline animation */
+.hero-nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -6px;
+    background: #e63946;
+    transition: 0.3s;
+}
+
+.hero-nav a:hover::after {
+    width: 100%;
+}
+
+/* Mobile */
+@media(max-width:768px){
+   
+}
+/* --- SUB NAV FIXED --- */
+.sub-nav {
+    background: #ffffff;
+    padding: 18px 0;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    position: sticky;
+    top: 75px; /* header height adjust cheyyam */
+    z-index: 999;
+}
+
+.sub-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    margin: 0 20px;
+    font-size: 16px;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.sub-nav a:hover {
+    color: #e63946;
+}
+
+/* underline animation */
+.sub-nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -6px;
+    background: #e63946;
+    transition: 0.3s;
+}
+
+.sub-nav a:hover::after {
+    width: 100%;
+}
+
+/* mobile */
+@media (max-width:600px){
+    .sub-nav {
+        padding: 12px 0;
+    }
+    .sub-nav a {
+        margin: 0 10px;
+        font-size: 14px;
+    }
+}
+
+      /* --- ABOUT SECTION NEW DESIGN --- */
+.about-container {
+    background: #fff;
+    padding: 80px 20px;
+    margin: 60px auto;
+    max-width: 1100px;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
+
+.about-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.about-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.about-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 28px;
+    background: #e63946;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.about-btn:hover {
+    background: #c82333;
+}
+
+/* Mobile */
+@media(max-width:768px){
+    .about-wrapper{
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+        /* --- PREMIUM ITEMS SECTION --- */
+.items-section {
+    padding: 90px 20px;
+    background: #fafafa;
+    text-align: center;
+}
+
+.items-section h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.items-section h2::after {
+    content: "";
+    width: 80px;
+    height: 3px;
+    background: #e63946;
+    display: block;
+    margin: 12px auto 0;
+}
+
+/* 2 items per row fixed */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 35px;
+    max-width: 900px;
+    margin: auto;
+}
+.category-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    height: 280px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transition: 0.4s ease;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s ease;
+}
+@media(max-width:768px){
+    .category-grid{
+        grid-template-columns: 1fr;
+    }
+}
+/* Dark overlay */
+.category-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+}
+
+/* Title styling */
+.category-card h3 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 22px;
+    z-index: 2;
+    margin: 0;
+}
+
+/* Hover effects */
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+}
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+        /* --- 5. CONTACT --- */
+        .contact { background: #111; color: white; text-align: center; padding: 60px 20px; margin-top: 50px; }
+        .whatsapp-btn { background-color: #25d366; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 25px; }
+
+        /* --- 6. CART POPUP --- */
+        #cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; z-index: 10000; justify-content: center; align-items: center; }
+        #cart-popup { background: white; width: 90%; max-width: 400px; border-radius: 25px; padding: 25px; text-align: center; }
+        .cart-item-box { display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 12px 15px; border-radius: 12px; margin-bottom: 10px; }
+        .remove-btn-sq { background: #ff5e5e; color: white; border: none; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; }
+        .mode-tabs { display: flex; gap: 10px; margin: 20px 0; }
+        .mode-btn { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 10px; cursor: pointer; font-weight: bold; background: white; }
+        .mode-btn.active { background: #111; color: white; }
+        .landmark-box { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 10px; margin-bottom: 15px; box-sizing: border-box; display: none; }
+
+        @media (max-width: 600px) { header { padding: 15px 20px; } .hero h1 { font-size: 28px; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-socials">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://instagram.com/arabian_spot_"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/917560929324"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <div class="header-logo-container">
+      
+    </div>
+    <div class="header-actions">
+        <div class="cart-emblem" onclick="openCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cart-badge-count">0</span>
+        </div>
+    </div>
+</header>
+
+<div class="hero">
+    <img src="madhooth.jpg" class="main-hero-background">
+    
+    <div class="hero-nav">
+        <a href="#">Home</a>
+        <a href="#menu">Items</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <img src="mainlogo.png" class="main-hero-logo">
+    <h1>ARABIAN SPOT</h1>
+    <p>AUTHENTIC ARABIAN FLAVORS</p>
+</div>
+
+<section class="about-container" id="about">
+  <div class="about-wrapper">
+
+    <div class="about-image">
+      <img src="madhooth.jpg" alt="Arabian Food">
+    </div>
+
+    <div class="about-content">
+      <h2>Authentic Arabian Experience</h2>
+      <p>
+        യഥാർത്ഥ അറേബ്യൻ രുചി ഇനി നിങ്ങളുടെ അരികിൽ!👑
+        മദ്ഹൂത്തിന്റെ വൈവിധ്യവും, മന്തിയുടെ മണവും, അൽഫാമിന്റെ രുചിയും 
+        ഒത്തുചേരുന്ന ഒരു സമ്പൂർണ്ണ അറേബ്യൻ ഭക്ഷണ അനുഭവം.
+      </p>
+
+      <p>
+        മദ്ഹൂത്ത്, കുഴിമന്തി, അൽഫാം മുതൽ കൂൾ ഡ്രിങ്ക്സ് വരെ എല്ലാം ഒരേയിടത്ത്
+      </p>
+
+      <a href="#menu" class="about-btn">Explore Menu</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="about-container" id="about">
+  <div class="about-wrapper">
+
+    <div class="about-image">
+      <img src="fastdelivery.png" alt="Arabian Food">
+    </div>
+
+    <div class="about-content">
+      <h2>FAST DELIVERY</h2>
+      <p>
+     നിങ്ങളുടെ പ്രിയപ്പെട്ട അറേബ്യൻ വിഭവങ്ങൾ ഒട്ടും ചൂടാറാതെ ഞങ്ങൾ വീട്ടിലെത്തിക്കുന്നു
+      </p>
+
+      <a href="#menu" class="about-btn">Explore Menu</a>
+    </div>
+
+  </div>
+</section>
+  
+     <section class="about-container" id="about">
+  <div class="about-wrapper">
+
+    <div class="about-image">
+      <img src="ordernow.jpg" alt="Arabian Food">
+    </div>
+
+    <div class="about-content">
+      <h2>ORDER FASTER</h2>
+      <p>
+  അറേബ്യൻ സ്പോട്ടിലെ ഓരോ വിഭവവും നിങ്ങൾക്ക് ഒരു പുത്തൻ അനുഭവമായിരിക്കും. ഇന്നുതന്നെ ഓർഡർ ചെയ്യൂ!
+      </p>
+
+      <a href="#menu" class="about-btn">Explore Menu</a>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="items-section" id="menu">
+    <h2>OUR COLLECTION</h2>
+    <div class="category-grid">
+        <a href="rice.html" class="category-card"><img src="img14.png"><h3>Rice Items</h3></a>
+        <a href="MEALS.html" class="category-card"><img src="img 3.png"><h3>Meals</h3></a>
+        <a href="DRINKS.html" class="category-card"><img src="drinks.png"><h3>Drinks</h3></a>
+        <a href="JUICES.html" class="category-card"><img src="JUICE.PNG"><h3>Juices</h3></a>
+    </div>
+</section>
+
+<section class="contact" id="contact">
+    <h3>Get In Touch</h3>
+    <a href="https://wa.me/917560929324" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+    <p><b>📞 Phone:</b> 7560929324</p>
+    <p><b>📍  Location:</b> Pullara, Moochikkal</p>
+     <p><b>© 2026 Arabian Spot</b></p>
+</section>
+
+<div id="cart-overlay">
+    <div id="cart-popup">
+        <h3 style="margin-top:0;">Your Selection</h3>
+        <div id="cart-items-list" style="max-height: 200px; overflow-y: auto; margin-bottom: 15px;"></div>
+        <div style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Total: ₹<span id="cart-total">0</span></div>
+        <div class="mode-tabs">
+            <button id="pickup-btn" class="mode-btn active" onclick="setOrderMode('Shop Pickup')">Shop Pickup</button>
+            <button id="delivery-btn" class="mode-btn" onclick="setOrderMode('Home Delivery')">Home Delivery</button>
+        </div>
+        <textarea id="address-box" class="landmark-box" rows="2" placeholder="Address / Landmark..."></textarea>
+        <button onclick="sendToWhatsApp()" style="background:#25d366; color:white; border:none; padding:15px; width:100%; border-radius:10px; font-weight:bold; cursor:pointer;">Order Now 🚀</button>
+        <p onclick="closeCart()" style="margin-top:15px; color:gray; cursor:pointer;">Close</p>
+    </div>
+</div>
+
+<script>
+    let cart = JSON.parse(localStorage.getItem('arabianCart')) || [];
+    let currentMode = "Shop Pickup";
+    window.onload = updateBadge;
+
+    function updateBadge() {
+        const badge = document.getElementById('cart-badge-count');
+        if (cart.length > 0) { badge.innerText = cart.length; badge.style.display = 'flex'; }
+        else { badge.style.display = 'none'; }
+    }
+
+    function openCart() {
+        const list = document.getElementById('cart-items-list');
+        const totalDisp = document.getElementById('cart-total');
+        list.innerHTML = cart.length ? "" : "<p>Cart is empty</p>";
+        let total = 0;
+        cart.forEach((item, index) => {
+            list.innerHTML += `<div class="cart-item-box">
+                <div style="text-align:left"><b>${item.name}</b><br><span>₹${item.price}</span></div>
+                <button class="remove-btn-sq" onclick="removeItem(${index})">✕</button>
+            </div>`;
+            total += item.price;
+        });
+        totalDisp.innerText = total;
+        document.getElementById('cart-overlay').style.display = 'flex';
+    }
+
+    function setOrderMode(mode) {
+        currentMode = mode;
+        document.getElementById('pickup-btn').classList.toggle('active', mode === 'Shop Pickup');
+        document.getElementById('delivery-btn').classList.toggle('active', mode === 'Home Delivery');
+        document.getElementById('address-box').style.display = (mode === 'Home Delivery') ? 'block' : 'none';
+    }
+
+    function removeItem(index) {
+        cart.splice(index, 1);
+        localStorage.setItem('arabianCart', JSON.stringify(cart));
+        updateBadge();
+        if (cart.length === 0) closeCart(); else openCart();
+    }
+
+    function closeCart() { document.getElementById('cart-overlay').style.display = 'none'; }
+
+    function sendToWhatsApp() {
+        if (!cart.length) return;
+        let items = cart.map(i => `• ${i.name} - ₹${i.price}`).join('%0A');
+        let total = document.getElementById('cart-total').innerText;
+        let addr = document.getElementById('address-box').value;
+        let msg = `*Order from Arabian Spot*%0A%0A${items}%0A%0A*Total: ₹${total}*%0A*Mode:* ${currentMode}`;
+        if (currentMode === "Home Delivery" && addr) msg += `%0A*Address:* ${encodeURIComponent(addr)}`;
+        window.open(`https://wa.me/917560929324?text=${msg}`, '_blank');
+    }
+</script>
+</body>
+</html>
